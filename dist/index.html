@@ -1,0 +1,192 @@
+<!doctype html><html><head><title>Pure JS Calculator</title><script defer="defer" src="main.js"></script><style type="text/css">*,*:before,*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark_blue: #18212A;
+    --less_dark_blue: #36474F;
+    --pure_white: #ffffff;
+    --almost_grey: #E5E5E5;
+    --almost_white: #F5F5F5;
+    --orange: #FF6531;
+    --dark_orange: #E43F08;
+}
+
+body {
+    background: linear-gradient(180deg, var(--less_dark_blue) 0%, var(--dark_blue) 100%);
+    display: flex;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+}
+
+.calculator-container {
+    width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    font-family: "Open Sans", sans-serif;
+    overflow: hidden;
+}
+
+.calculator-output {
+    height: 200px;
+    padding: 0 20px;
+    background-color: var(--less_dark_blue);
+}
+
+#output {
+    width: 100%;
+    height: 100%;
+    font-size: 48px;
+    color: var(--pure_white);
+    text-align: right;
+    border: none;
+    background-color: transparent;
+}
+
+#output:focus {
+    outline: none;
+}
+
+.calculator-keypad {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 500px;
+    background-color: var(--dark_blue);
+}
+
+.keypad-row {
+    display: flex;
+    width: 100%;
+    height: 20%;
+}
+
+.calculator-key, .calculator-key.key-operator.key-sign, .calculator-key.key-operator.key-percent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+    font-size: 24px;
+    color: var(--pure_white);
+    background-color: var(--dark_blue);
+    border: none;
+    cursor: pointer;
+}
+
+.calculator-key:hover , .key-sign:focus, .key-percent:focus {
+    background-color: var(--less_dark_blue);
+}
+
+.zero{
+    width: 50%;
+    border-bottom-left-radius: 20px;
+}
+
+.calculator-key.key-operator {
+    background-color: var(--almost_grey);
+    color: var(--dark_blue);
+}
+
+.calculator-key.key-operator:hover {
+    background-color: var(--almost_white);
+}
+
+.calculator-key.key-operator:focus {
+    background-color: var(--almost_white);
+}
+
+.calculator-key.key-equal {
+    background-color: var(--orange);
+    color: var(--pure_white);
+    border-bottom-right-radius: 20px;
+}
+
+.calculator-key.key-equal:hover {
+    background-color: var(--dark_orange);
+}
+
+.theme-switch {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.theme-switch button{
+    background-color: var(--dark_blue);
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: ease-in-out 0.6s;
+    color: var(--almost_white);
+}
+
+.theme-switch button:hover{
+    transform: scale(1.07);
+}
+
+/* DAY THEME */
+body.day-theme{
+    background: linear-gradient(180deg, #E9F2F4 0%, #B9C9E1 100%);
+}
+
+.day-theme {
+    background-color: var(--dark_blue);
+    color: var(--pure_white);
+}
+
+.day-theme .calculator-output{
+    background-color: var(--pure_white);
+}
+
+.day-theme #output {
+    color: var(--dark_blue);
+}
+
+.day-theme .calculator-key{
+    background-color: var(--almost_white);
+    color: var(--dark_blue);
+}
+
+.day-theme .calculator-key.key-operator {
+    background-color: var(--almost_grey);
+    color: var(--dark_blue);
+}
+
+.day-theme .calculator-key.key-equal {
+    background-color: var(--orange);
+    color: var(--pure_white);
+}
+
+.day-theme .calculator-key.key-operator:hover , .day-theme .calculator-key.key-operator:focus {
+    background-color: var(--almost_white);
+}
+
+.day-theme .calculator-key:hover , .day-theme .key-percent:focus, .day-theme .key-sign:focus  {
+    background-color: var(--almost_grey);
+}
+
+.calculator-key.key-equal:hover {
+    background-color: var(--dark_orange);
+}
+
+.day-theme .theme-switch button{
+    background-color: var(--almost_white);
+    border: 1px solid var(--dark_blue);
+    color: var(--dark_blue);
+}
+
+
+
+
+
+</style></head><body class="body"><div class="calculator-container"><div class="calculator-output"><input id="output" value="0" readonly="readonly"></div><div class="calculator-keypad"><div class="keypad-row"><button type="button" class="calculator-key key-clear" id="clear">AC</button> <button type="button" value="+-" class="calculator-key key-sign" id="switch_sign">+-</button> <button type="button" value="%" class="calculator-key key-percent" id="percent">%</button> <button type="button" value="/" class="calculator-key key-operator" id="divide">/</button></div><div class="keypad-row"><button type="button" value="7" class="calculator-key key-number" id="button_7">7</button> <button type="button" value="8" class="calculator-key key-number" id="button_8">8</button> <button type="button" value="9" class="calculator-key key-number" id="button_9">9</button> <button type="button" value="*" class="calculator-key key-operator" id="multiply">x</button></div><div class="keypad-row"><button type="button" value="4" class="calculator-key key-number" id="button_4">4</button> <button type="button" value="5" class="calculator-key key-number" id="button_5">5</button> <button type="button" value="6" class="calculator-key key-number" id="button_6">6</button> <button type="button" value="-" class="calculator-key key-operator" id="subtract">-</button></div><div class="keypad-row"><button type="button" value="1" class="calculator-key key-number" id="button_1">1</button> <button type="button" value="2" class="calculator-key key-number" id="button_2">2</button> <button type="button" value="3" class="calculator-key key-number" id="button_3">3</button> <button type="button" value="+" class="calculator-key key-operator" id="add">+</button></div><div class="keypad-row"><button type="button" value="0" class="calculator-key key-number zero" id="button_0">0</button> <button type="button" value="." class="calculator-key key-number" id="decimal">.</button> <button type="button" class="calculator-key key-equal" id="equal">=</button></div></div></div><div class="theme-switch"><button type="button" id="switch-theme-button">Switch theme</button></div><script></script><script src="index.js"></script></body></html>
