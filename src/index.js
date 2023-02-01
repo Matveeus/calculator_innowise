@@ -1,6 +1,5 @@
 import './styles.css';
-import './theme';
-
+import {switchTheme} from './theme';
 import { operatorsInit } from './operators';
 import { numbersInit } from './numbers';
 
@@ -20,4 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const calculator = new Calculator('', 0, false, true, 14, 0);
     operatorsInit(calculator);
     numbersInit(calculator);
+    switchTheme();
 });
