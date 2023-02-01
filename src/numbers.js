@@ -21,10 +21,10 @@ function handleNumberClick(clickedButton, calculator) {
     appendNumber(calculator, clickedButton);
     calculator.newNumber = false;
     calculator.operatorActive = false;
-    if(calculator.equalCounter > 0){
+    if (calculator.equalCounter > 0) {
         calculator.currentValue = 0;
         calculator.equalCounter = 0;
-        calculator.currentOperator = "";
+        calculator.currentOperator = '';
     }
     // calculator.currentValue = "";
 }
@@ -32,7 +32,7 @@ function handleNumberClick(clickedButton, calculator) {
 export function numbersInit(calculator) {
     const numbers = document.querySelectorAll('.key-number');
     numbers.forEach((number) => {
-        number.addEventListener('click', function (e){
+        number.addEventListener('click', (e) => {
             handleNumberClick(e.target.value, calculator);
         });
     });
