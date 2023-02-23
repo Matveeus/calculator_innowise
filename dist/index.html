@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pure JS Calculator</title>
-    <link rel="stylesheet" href="styles.css">
-<script defer src="main.js"></script><style type="text/css">/*!******************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles.css ***!
-  \******************************************************************/
-*,*:before,*:after {
+<!doctype html><html><head><title>Pure JS Calculator</title><link rel="stylesheet" href="styles.css"><script defer="defer" src="main.js"></script><style type="text/css">*,*:before,*:after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -33,16 +25,23 @@ body {
     height: 100vh;
 }
 
+sub, sup {
+    font-size: 18px;
+}
+
 .calculator-container {
+    position: relative;
     width: 400px;
     margin: 0 auto;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     font-family: "Open Sans", sans-serif;
     overflow: hidden;
+    transition: width ease-in-out 0.3s;
 }
 
 .calculator-output {
+    position: relative;
     height: 200px;
     padding: 0 20px;
     background-color: var(--less_dark_blue);
@@ -62,15 +61,54 @@ body {
     outline: none;
 }
 
+#show-operations {
+    position: absolute;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    top: 20px;
+    left: 20px;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    background-color: var(--dark_blue);
+    color: var(--almost_grey);
+}
+
+#show-operations:hover {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.pro {
+    width: 1000px;
+    transition: width ease-in-out 0.3s;
+}
+
 .calculator-keypad {
     display: flex;
     flex-wrap: wrap;
+    position: inherit;
     width: 100%;
+    max-width: 400px;
     height: 500px;
+    margin-left: auto;
+    border-radius: 20px;
     background-color: var(--dark_blue);
+    z-index: 2;
 }
 
-.keypad-row {
+.keypad-pro {
+    top: 200px;
+    left: 0;
+    width: 100%;
+    max-width: 600px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+}
+
+.keypad-row, .keypad-row-pro {
     display: flex;
     width: 100%;
     height: 20%;
@@ -96,6 +134,11 @@ body {
 .zero{
     width: 50%;
     border-bottom-left-radius: 20px;
+    transition: border-bottom-left-radius ease-in-out 0.3s;
+}
+
+.no-radius {
+    border-bottom-left-radius: 0;
 }
 
 .calculator-key.key-operator {
@@ -160,6 +203,11 @@ body.day-theme{
     color: var(--dark_blue);
 }
 
+.day-theme #show-operations {
+    background-color: var(--almost_grey);
+    color: var(--dark_blue);
+}
+
 .day-theme .calculator-key{
     background-color: var(--almost_white);
     color: var(--dark_blue);
@@ -197,49 +245,4 @@ body.day-theme{
 
 
 
-</style></head>
-<body class="body">
-<div class="calculator-container">
-    <div class="calculator-output">
-        <input type="text" id="output" value="0" readonly>
-    </div>
-    <div class="calculator-keypad">
-        <div class="keypad-row">
-            <button type="button" class="calculator-key key-clear" id="clear">AC</button>
-            <button type="button" value="+-" class="calculator-key key-sign" id="switch_sign">+-</button>
-            <button type="button" value="%" class="calculator-key key-percent" id="percent">%</button>
-            <button type="button" value="/" class="calculator-key key-operator" id="divide">/</button>
-        </div>
-        <div class="keypad-row">
-            <button type="button" value="7" class="calculator-key key-number" id="button_7">7</button>
-            <button type="button" value="8" class="calculator-key key-number" id="button_8">8</button>
-            <button type="button" value="9" class="calculator-key key-number" id="button_9">9</button>
-            <button type="button" value="*" class="calculator-key key-operator" id="multiply">x</button>
-        </div>
-        <div class="keypad-row">
-            <button type="button" value="4" class="calculator-key key-number" id="button_4">4</button>
-            <button type="button" value="5" class="calculator-key key-number" id="button_5">5</button>
-            <button type="button" value="6" class="calculator-key key-number" id="button_6">6</button>
-            <button type="button" value="-" class="calculator-key key-operator" id="subtract">-</button>
-        </div>
-        <div class="keypad-row">
-            <button type="button" value="1" class="calculator-key key-number" id="button_1">1</button>
-            <button type="button" value="2" class="calculator-key key-number" id="button_2">2</button>
-            <button type="button" value="3" class="calculator-key key-number" id="button_3">3</button>
-            <button type="button" value="+" class="calculator-key key-operator" id="add">+</button>
-        </div>
-        <div class="keypad-row">
-            <button type="button" value="0" class="calculator-key key-number zero" id="button_0">0</button>
-            <button type="button" value="." class="calculator-key key-number" id="decimal">.</button>
-            <button type="button" class="calculator-key key-equal" id="equal">=</button>
-        </div>
-    </div>
-
-</div>
-<div class="theme-switch">
-    <button type="button" id="switch-theme-button">Switch theme</button>
-</div>
-<script src="index.js"></script>
-</body>
-</html>
-
+</style></head><body class="body"><div class="calculator-container"><div class="calculator-output"><input id="output" value="0" readonly="readonly"> <button id="show-operations">More</button></div><div class="calculator-keypad"><div class="keypad-row"><button type="button" class="calculator-key key-clear" id="clear">AC</button> <button type="button" value="+-" class="calculator-key key-sign" id="switch_sign">+-</button> <button type="button" value="%" class="calculator-key key-percent" id="percent">%</button> <button type="button" value="/" class="calculator-key key-operator" id="divide">/</button></div><div class="keypad-row"><button type="button" value="7" class="calculator-key key-number" id="button_7">7</button> <button type="button" value="8" class="calculator-key key-number" id="button_8">8</button> <button type="button" value="9" class="calculator-key key-number" id="button_9">9</button> <button type="button" value="*" class="calculator-key key-operator" id="multiply">x</button></div><div class="keypad-row"><button type="button" value="4" class="calculator-key key-number" id="button_4">4</button> <button type="button" value="5" class="calculator-key key-number" id="button_5">5</button> <button type="button" value="6" class="calculator-key key-number" id="button_6">6</button> <button type="button" value="-" class="calculator-key key-operator" id="subtract">-</button></div><div class="keypad-row"><button type="button" value="1" class="calculator-key key-number" id="button_1">1</button> <button type="button" value="2" class="calculator-key key-number" id="button_2">2</button> <button type="button" value="3" class="calculator-key key-number" id="button_3">3</button> <button type="button" value="+" class="calculator-key key-operator" id="add">+</button></div><div class="keypad-row"><button type="button" value="0" class="calculator-key key-number zero" id="button_0">0</button> <button type="button" value="." class="calculator-key key-number" id="decimal">.</button> <button type="button" class="calculator-key key-equal" id="equal">=</button></div></div><div class="keypad-pro"><div class="keypad-row-pro"><button type="button" value="(" class="calculator-key" id="">(</button> <button type="button" value=")" class="calculator-key" id="">)</button> <button type="button" value="" class="calculator-key" id="">mc</button> <button type="button" value="" class="calculator-key" id="">m+</button> <button type="button" value="" class="calculator-key" id="">m-</button> <button type="button" value="" class="calculator-key" id="">mr</button></div><div class="keypad-row-pro"><button type="button" value="(" class="calculator-key" id=""><div>2<sup>nd</sup></div></button> <button type="button" value=")" class="calculator-key" id=""><div>x<sup>2</sup></div></button> <button type="button" value="" class="calculator-key" id=""><div>x<sup>3</sup></div></button> <button type="button" value="" class="calculator-key" id=""><div>x<sup>y</sup></div></button> <button type="button" value="" class="calculator-key" id=""><div>e<sup>x</sup></div></button> <button type="button" value="" class="calculator-key" id=""><div>10<sup>x</sup></div></button></div><div class="keypad-row-pro"><button type="button" value="(" class="calculator-key" id=""><div><sup>1</sup>/<sub>x</sub></div></button> <button type="button" value=")" class="calculator-key" id=""><div><sup>2</sup>&#x221A;x</div></button> <button type="button" value="" class="calculator-key" id=""><div><sup>3</sup>&#x221A;x</div></button> <button type="button" value="" class="calculator-key" id=""><div><sup>y</sup>&#x221A;x</div></button> <button type="button" value="" class="calculator-key" id="">ln</button> <button type="button" value="" class="calculator-key" id=""><div>log<sub>10</sub></div></button></div><div class="keypad-row-pro"><button type="button" value="(" class="calculator-key" id="">x!</button> <button type="button" value=")" class="calculator-key" id="">sin</button> <button type="button" value="" class="calculator-key" id="">cos</button> <button type="button" value="" class="calculator-key" id="">tan</button> <button type="button" value="" class="calculator-key" id="">e</button> <button type="button" value="" class="calculator-key" id="">EE</button></div><div class="keypad-row-pro"><button type="button" value="(" class="calculator-key" id="">Rad</button> <button type="button" value=")" class="calculator-key" id="">sinh</button> <button type="button" value="" class="calculator-key" id="">cosh</button> <button type="button" value="" class="calculator-key" id="">tanh</button> <button type="button" value="" class="calculator-key" id="">&pi;</button> <button type="button" value="" class="calculator-key" id="">Rand</button></div></div></div><div class="theme-switch"><button type="button" id="switch-theme-button">Switch theme</button></div><script src="index.js"></script></body></html>

@@ -26,7 +26,6 @@ function handleNumberClick(clickedButton, calculator) {
         calculator.equalCounter = 0;
         calculator.currentOperator = '';
     }
-    // calculator.currentValue = "";
 }
 
 export function numbersInit(calculator) {
