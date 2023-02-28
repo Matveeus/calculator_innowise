@@ -24,7 +24,6 @@ function handleNumberClick(clickedButton, calculator) {
     if (calculator.equalCounter > 0) {
         calculator.currentValue = 0;
         calculator.equalCounter = 0;
-        calculator.currentOperator = '';
     }
 }
 
