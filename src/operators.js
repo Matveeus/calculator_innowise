@@ -1,6 +1,7 @@
 import {
     percent, operationsSwitch, clear, switchSignFunction, equal, memoryAdd,
-    memorySubtract, memoryClear, memoryRecall, squareFunction, cubeFunction
+    memorySubtract, memoryClear, memoryRecall, squareFunction, cubeFunction, eToPowerFunction,
+    tenToPowerFunction, oneXthFunction, squareRootFunction, cubeRootFunction, factorialFunction, piValue, eValue
 } from './operations';
 
 function handleOperatorClick(clickedOperator, calculator) {
@@ -61,10 +62,42 @@ export function operatorsInit(calculator) {
     });
     const square = document.getElementById('square');
     square.addEventListener('click', () => {
-        squareFunction(calculator);
+        squareFunction();
     });
     const cube = document.getElementById('cube');
     cube.addEventListener('click', () => {
-        cubeFunction(calculator);
+        cubeFunction();
+    });
+    const ePower = document.getElementById('e_to_power');
+    ePower.addEventListener('click', () => {
+        eToPowerFunction();
+    });
+    const tenPower = document.getElementById('10_to_power');
+    tenPower.addEventListener('click', () => {
+        tenToPowerFunction();
+    });
+    const oneXth = document.getElementById('one_x-th');
+    oneXth.addEventListener('click', () => {
+        oneXthFunction();
+    });
+    const squareRoot = document.getElementById('square_root');
+    squareRoot.addEventListener('click', () => {
+        squareRootFunction();
+    });
+    const cubeRoot = document.getElementById('cube_root');
+    cubeRoot.addEventListener('click', () => {
+        cubeRootFunction();
+    });
+    const factorial = document.getElementById('factorial');
+    factorial.addEventListener('click', () => {
+        factorialFunction();
+    });
+    const pi = document.getElementById('pi');
+    pi.addEventListener('click', () => {
+        piValue();
+    });
+    const e = document.getElementById('e');
+    e.addEventListener('click', () => {
+        eValue();
     });
 }

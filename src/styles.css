@@ -114,7 +114,7 @@ sub, sup {
     height: 20%;
 }
 
-.calculator-key, .calculator-key.key-operator.key-sign, .calculator-key.key-operator.key-percent {
+.calculator-key, .calculator-key.key-operator.key-sign, .calculator-key.key-operator.key-percent, .keypad-row-pro .calculator-key.key-operator {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -208,7 +208,7 @@ body.day-theme{
     color: var(--dark_blue);
 }
 
-.day-theme .calculator-key{
+.day-theme .calculator-key, .day-theme .keypad-row-pro .calculator-key.key-operator{
     background-color: var(--almost_white);
     color: var(--dark_blue);
 }

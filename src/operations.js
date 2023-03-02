@@ -31,6 +31,9 @@ export function operationsSwitch(calculator) {
                 ? (Number(calculator.currentValue) ** Number(output.value))
                 : (Number(output.value) ** Number(calculator.currentValue)));
             break;
+        case 'y_root':
+
+            break;
         default:
             //eslint-disable-next-line no-useless-return
             return;
@@ -85,16 +88,77 @@ export function memoryRecall(calculator) {
     output.value = calculator.memoryValue;
 }
 
-export function squareFunction(calculator) {
-    output.value = output.value ** 2;
+export function squareFunction() {
+    output.value = Number(output.value) ** 2;
 }
 
-export function cubeFunction(calculator) {
-    output.value = output.value ** 3;
+export function cubeFunction() {
+    output.value = Number(output.value) ** 3;
 }
 
-export function exponentiationFunction(calculator) {
-    output.value = transformInt(Number(calculator.currentValue) ** Number(output.value));
+export function eToPowerFunction() {
+    output.value = 2.7182818011463845 ** Number(output.value);
 }
+
+export function tenToPowerFunction() {
+    output.value = 10 ** Number(output.value);
+}
+
+export function oneXthFunction() {
+    if (Number(output.value) === 0) {
+        output.value = "Error";
+    } else {
+        output.value = 1 / Number(output.value);
+    }
+}
+
+export function squareRootFunction() {
+    if (Number(output.value) < 0) {
+        output.value = "Error";
+    } else if (Number(output.value) === 0) {
+        output.value = 0;
+    } else {
+        let result, x = Number(output.value) / 2;
+        do {
+            result = x;
+            x = (result + (Number(output.value) / result)) / 2;
+        } while (result !== x);
+        output.value = result;
+    }
+}
+
+export function cubeRootFunction() {
+    if (Number(output.value) === 0) {
+        output.value = 0;
+    } else {
+        let result, x = Number(output.value) / 2;
+        do {
+            result = x;
+            x = (Number(output.value) / (x * x) + (x * 2)) / 3;
+        } while (result !== x);
+        output.value = result;
+    }
+}
+
+export function factorialFunction() {
+    if (Number(output.value) < 0) {
+        output.value = "Error";
+    } else if (Number(output.value) === 0) {
+        output.value = 1;
+    } else {
+        for (let i = Number(output.value) - 1; i > 0 ; i--) {
+            output.value = Number(output.value) * i;
+        }
+    }
+}
+
+export function piValue() {
+    output.value = 3.14159265359;
+}
+
+export function eValue() {
+    output.value = 2.71828182846;
+}
+
 
 
