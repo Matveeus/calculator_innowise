@@ -1,9 +1,30 @@
 import { numberValidation, transformInt } from './utils';
+
 const output = document.getElementById('output');
+
+/////// function to calculate root ///////
+function power(x, y) {
+    let result = 1;
+    for (let i = 0; i < y; i += 1) {
+        result *= x;
+    }
+    return result;
+}
+
+function root(x, y) {
+    const precision = 0.0001;
+    let estimate = x;
+    while ((x - power(estimate, y)) * (x - power(estimate, y)) > precision * precision) {
+        estimate = ((y - 1) * estimate + x / power(estimate, y - 1)) / y;
+    }
+    return estimate;
+}
+//////////////////////////////////////////
 
 export function operationsSwitch(calculator) {
     if (!numberValidation(calculator.currentValue, output.value)) return;
     const outputBeforeOperation = output.value;
+
     switch (calculator.currentOperator) {
         case '+':
             output.value = transformInt(Number(calculator.currentValue) + Number(output.value));
@@ -19,8 +40,7 @@ export function operationsSwitch(calculator) {
         case '/':
             if (Number(output.value) === 0) {
                 output.value = 'Error';
-            }
-            else {
+            } else {
                 output.value = transformInt(calculator.equalCounter === 0
                     ? (Number(calculator.currentValue) / Number(output.value))
                     : (Number(output.value) / Number(calculator.currentValue)));
@@ -31,9 +51,13 @@ export function operationsSwitch(calculator) {
                 ? (Number(calculator.currentValue) ** Number(output.value))
                 : (Number(output.value) ** Number(calculator.currentValue)));
             break;
-        case 'y_root':
-
+        case 'y_root': {
+            const x = calculator.equalCounter === 0 ? calculator.currentValue : output.value;
+            const y = calculator.equalCounter === 0 ? output.value : calculator.currentValue;
+            output.value = transformInt(root(x, y));
             break;
+        }
+
         default:
             //eslint-disable-next-line no-useless-return
             return;
@@ -106,7 +130,7 @@ export function tenToPowerFunction() {
 
 export function oneXthFunction() {
     if (Number(output.value) === 0) {
-        output.value = "Error";
+        output.value = 'Error';
     } else {
         output.value = 1 / Number(output.value);
     }
@@ -114,11 +138,12 @@ export function oneXthFunction() {
 
 export function squareRootFunction() {
     if (Number(output.value) < 0) {
-        output.value = "Error";
+        output.value = 'Error';
     } else if (Number(output.value) === 0) {
         output.value = 0;
     } else {
-        let result, x = Number(output.value) / 2;
+        let result; let
+x = Number(output.value) / 2;
         do {
             result = x;
             x = (result + (Number(output.value) / result)) / 2;
@@ -131,7 +156,8 @@ export function cubeRootFunction() {
     if (Number(output.value) === 0) {
         output.value = 0;
     } else {
-        let result, x = Number(output.value) / 2;
+        let result; let
+x = Number(output.value) / 2;
         do {
             result = x;
             x = (Number(output.value) / (x * x) + (x * 2)) / 3;
@@ -142,11 +168,11 @@ export function cubeRootFunction() {
 
 export function factorialFunction() {
     if (Number(output.value) < 0) {
-        output.value = "Error";
+        output.value = 'Error';
     } else if (Number(output.value) === 0) {
         output.value = 1;
     } else {
-        for (let i = Number(output.value) - 1; i > 0 ; i--) {
+        for (let i = Number(output.value) - 1; i > 0; i -= 1) {
             output.value = Number(output.value) * i;
         }
     }
@@ -159,6 +185,3 @@ export function piValue() {
 export function eValue() {
     output.value = 2.71828182846;
 }
-
-
-

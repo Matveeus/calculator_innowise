@@ -1,6 +1,6 @@
 import './styles.css';
-import {switchTheme} from './theme';
-import {switchMode} from "./calculator_mode_toggle";
+import { switchTheme } from './theme';
+import { switchMode } from './calculator_mode_toggle';
 import { operatorsInit } from './operators';
 import { numbersInit } from './numbers';
 

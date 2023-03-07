@@ -1,7 +1,8 @@
 import {
     percent, operationsSwitch, clear, switchSignFunction, equal, memoryAdd,
     memorySubtract, memoryClear, memoryRecall, squareFunction, cubeFunction, eToPowerFunction,
-    tenToPowerFunction, oneXthFunction, squareRootFunction, cubeRootFunction, factorialFunction, piValue, eValue
+    tenToPowerFunction, oneXthFunction, squareRootFunction, cubeRootFunction,
+    factorialFunction, piValue, eValue,
 } from './operations';
 
 function handleOperatorClick(clickedOperator, calculator) {
