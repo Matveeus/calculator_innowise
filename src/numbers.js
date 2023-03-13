@@ -30,8 +30,8 @@ function handleNumberClick(clickedButton, calculator) {
 export function numbersInit(calculator) {
     const numbers = document.querySelectorAll('.key-number');
     numbers.forEach((number) => {
-        number.addEventListener('click', (e) => {
-            handleNumberClick(e.target.value, calculator);
+        number.addEventListener('click', () => {
+            handleNumberClick(number.value, calculator);
         });
     });
 }

@@ -61,13 +61,11 @@ sub, sup {
     outline: none;
 }
 
-#show-operations {
+#show-operations, #undo {
     position: absolute;
     border: none;
     border-radius: 10px;
     font-size: 16px;
-    top: 20px;
-    left: 20px;
     width: 90px;
     height: 30px;
     cursor: pointer;
@@ -75,7 +73,17 @@ sub, sup {
     color: var(--almost_grey);
 }
 
-#show-operations:hover {
+#show-operations {
+    top: 20px;
+    left: 20px;
+}
+
+#undo {
+    top: 60px;
+    left: 20px;
+}
+
+#show-operations:hover , #undo:hover {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
@@ -127,7 +135,7 @@ sub, sup {
     cursor: pointer;
 }
 
-.calculator-key:hover , .key-sign:focus, .key-percent:focus, .keypad-row-pro .calculator-key.key-operator:focus, .keypad-row-pro .calculator-key.key-operator:hover {
+.calculator-key:hover , .key-sign:focus, .key-percent:focus, .keypad-row-pro .calculator-key.key-operator:focus, .keypad-row-pro .calculator-key.key-operator:hover,  #exponentiation:focus, #y_root:focus{
     background-color: var(--less_dark_blue);
 }
 
@@ -205,7 +213,7 @@ body.day-theme{
     color: var(--dark_blue);
 }
 
-.day-theme #show-operations {
+.day-theme #show-operations, .day-theme #undo {
     background-color: var(--almost_grey);
     color: var(--dark_blue);
 }

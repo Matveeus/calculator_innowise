@@ -13,3 +13,8 @@ export function switchMode() {
 }
 
 switchCalculatorMode.addEventListener('click', switchMode);
+
+
+
+
+
